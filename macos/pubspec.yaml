@@ -1,0 +1,35 @@
+name: e_purna
+description: >
+  e-Purna — Register people, list products/services, and grow your business.
+  Flutter project aligned with Figma design.
+
+publish_to: "none" # This is a private project; don't publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # For iOS icons and consistency with Material widgets
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  # Register all assets folders here:
+  assets:
+    - assets/icons/homepage/
+    # If you have more images later, add:
+    # - assets/images/
+    # - assets/fonts/
