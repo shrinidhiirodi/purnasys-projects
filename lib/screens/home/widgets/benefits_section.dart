@@ -9,52 +9,28 @@ class BenefitsSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final maxContentWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
-
         return Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: maxContentWidth),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Benefits',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _buildBenefitItem(
-                    iconPath: 'assets/icons/homepage/icon_easy.png',
-                    title: 'Easy to Use',
-                    description:
-                    'With its simple UI and easy navigations, members can easily do the transactions on the platform.',
-                  ),
-                  const SizedBox(height: 20),
-                  _buildBenefitItem(
-                    iconPath: 'assets/icons/homepage/icon_trust.png',
-                    title: 'Trust',
-                    description:
-                    'E-purna is a restricted entry group of mutually networked members that are approved after due Diligence.',
-                  ),
-                  const SizedBox(height: 20),
-                  _buildBenefitItem(
-                    iconPath: 'assets/icons/homepage/icon_reliable.png',
-                    title: 'Reliable',
-                    description:
-                    'Low rates of the reputed companies are already negotiated based on high and assured volumes.',
-                  ),
-                  const SizedBox(height: 20),
-                  _buildBenefitItem(
-                    iconPath: 'assets/icons/homepage/icon_effective.png',
-                    title: 'Effective',
-                    description:
-                    'You can reach a wider audience quickly with e-Purna Go to Market strategies.',
-                  ),
-                ],
-              ),
+          child: Container(
+            width: maxContentWidth,
+            color: Colors.grey[200],
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text('Benefits', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
+                _buildBenefit('icon_easy.png', 'Easy to Use',
+                    'Simple UI and easy navigation help members transact easily.'),
+                const SizedBox(height: 20),
+                _buildBenefit('icon_trust.png', 'Trust',
+                    'Restricted entry group approved after due diligence.'),
+                const SizedBox(height: 20),
+                _buildBenefit('icon_reliable.png', 'Reliable',
+                    'Low rates of reputed companies, assured volumes.'),
+                const SizedBox(height: 20),
+                _buildBenefit('icon_effective.png', 'Effective',
+                    'Wider audience reach with e-Purna strategies.'),
+              ],
             ),
           ),
         );
@@ -62,35 +38,14 @@ class BenefitsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildBenefitItem({
-    required String iconPath,
-    required String title,
-    required String description,
-  }) {
+  Widget _buildBenefit(String icon, String title, String desc) {
     return Column(
       children: [
-        Image.asset(
-          iconPath,
-          height: 50,
-          fit: BoxFit.contain,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.black87,
-          ),
-        ),
+        Image.asset('assets/icons/homepage/$icon', height: 50),
+        const SizedBox(height: 10),
+        Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 6),
+        Text(desc, textAlign: TextAlign.center),
       ],
     );
   }
