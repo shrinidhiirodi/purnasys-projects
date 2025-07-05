@@ -27,9 +27,9 @@ fake_async
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/fake_async-1.3.3/
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/fake_async-1.3.3/lib/
 flutter_lints
-3.5
-file:///Users/nammamac/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/
-file:///Users/nammamac/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/
+2.19
+file:///Users/nammamac/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3/
+file:///Users/nammamac/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3/lib/
 leak_tracker
 3.2
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/leak_tracker-10.0.9/
@@ -43,9 +43,9 @@ leak_tracker_testing
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib/
 lints
-3.6
-file:///Users/nammamac/.pub-cache/hosted/pub.dev/lints-5.1.1/
-file:///Users/nammamac/.pub-cache/hosted/pub.dev/lints-5.1.1/lib/
+3.0
+file:///Users/nammamac/.pub-cache/hosted/pub.dev/lints-2.1.1/
+file:///Users/nammamac/.pub-cache/hosted/pub.dev/lints-2.1.1/lib/
 matcher
 3.4
 file:///Users/nammamac/.pub-cache/hosted/pub.dev/matcher-0.12.17/
@@ -99,7 +99,7 @@ sky_engine
 file:///Users/nammamac/flutter/bin/cache/pkg/sky_engine/
 file:///Users/nammamac/flutter/bin/cache/pkg/sky_engine/lib/
 e_purna
-3.8
+3.0
 file:///Users/nammamac/flutter/dev/e_purna/
 file:///Users/nammamac/flutter/dev/e_purna/lib/
 flutter
