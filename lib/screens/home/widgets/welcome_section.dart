@@ -15,7 +15,7 @@ class WelcomeSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/icons/homepage/welcome_illustration.png'),
+                Image.asset('assets/icons/homepage/icon_welcome.png'),
                 const SizedBox(height: 12),
                 const Text(
                   'Welcome to e-Purna!',

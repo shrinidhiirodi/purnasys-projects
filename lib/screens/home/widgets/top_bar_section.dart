@@ -37,7 +37,12 @@ class TopBarSection extends StatelessWidget {
                     children: [
                       Image.asset('assets/icons/homepage/icon_cart.png', width: 28),
                       const SizedBox(width: 12),
-                      Image.asset('assets/icons/homepage/icon_qr.png', width: 28),
+                      IconButton(
+                        icon: Image.asset('assets/icons/homepage/icon_qr.png'),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/products');
+                        },
+                      ),
                       const SizedBox(width: 12),
                       Image.asset('assets/icons/homepage/icon_help.png', width: 28),
                     ],

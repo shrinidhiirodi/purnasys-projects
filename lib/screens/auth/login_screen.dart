@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import '../../utils/responsive_helper.dart';
+import 'my_account_details_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -7,39 +9,115 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2676BB),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final maxContentWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxContentWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+          return Column(
+            children: [
+              Container(
+                color: const Color(0xFFF5F5F5),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxContentWidth),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        Image.asset('assets/icons/homepage/icon_epurna_logo.png', height: 40),
+                        Image.asset('assets/icons/homepage/icon_help.png', width: 28),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: const Color(0xFF2277B5),
                   child: Center(
                     child: ConstrainedBox(
                       constraints: BoxConstraints(maxWidth: maxContentWidth),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.all(24),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const BackButton(color: Colors.black),
-                            Expanded(
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/icons/homepage/icon_epurna_logo.png',
-                                  height: 36,
+                            TextField(
+                              decoration: InputDecoration(
+                                hintText: 'User ID',
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: BorderSide.none,
                                 ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                               ),
                             ),
-                            Image.asset(
-                              'assets/icons/homepage/icon_help.png',
-                              width: 24,
-                              height: 24,
+                            const SizedBox(height: 16),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                filled: true,
+                                fillColor: Colors.white,
+                                suffixIcon: Icon(Icons.visibility_off),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () {},
+                                child: const Text('Forgot your password?', style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const MyAccountDetailsScreen()),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  padding: const EdgeInsets.symmetric(vertical: 18),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                ),
+                                child: const Text('LOGIN'),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("Don't have an account?", style: TextStyle(color: Colors.white)),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/create-account');
+                                  },
+                                  child: const Text('Sign up',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -47,96 +125,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
-                Center(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: maxContentWidth),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          _buildInputField('User ID'),
-                          _buildInputField('Password', obscureText: true),
-                          const SizedBox(height: 8),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              'Forgot your password?',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black,
-                                foregroundColor: Colors.white,
-                                shape: const StadiumBorder(),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 14),
-                                child: Text('LOGIN'),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Don't have an account? ",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(context, '/create-account');
-                                },
-                                child: const Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInputField(String hint, {bool obscureText = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          hintText: hint,
-          filled: true,
-          fillColor: Colors.white,
-          suffixIcon: obscureText ? const Icon(Icons.visibility_off) : null,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide.none,
-          ),
-        ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
