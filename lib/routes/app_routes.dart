@@ -15,8 +15,8 @@ class AppRoutes {
     '/create-account': (context) => const CreateAccountScreen(),
     '/login': (context) => const LoginScreen(),
     '/products': (context) => const ProductListingScreen(),
-    '/productDetails': (context) => const ProductDetailsScreen(),
-    '/cartDetails': (context) => const CartDetailsScreen(),
-    '/addressList': (context) => const AddressListScreen(),
+    '/product-details': (context) => const ProductDetailsScreen(),
+    '/cart-details': (context) => const CartDetailsScreen(),
+    '/address-list': (context) => const AddressListScreen(),
   };
 }
