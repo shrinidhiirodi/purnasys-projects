@@ -87,11 +87,21 @@ class MyAccountDetailsScreen extends StatelessWidget {
                   ),
 
                   // Sections
-                  _buildSection(context, "My Orders", 5),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/myOrdersList');
+                  },
+                  child: _buildSection(context, "My Orders", 5),
+                 ),
                   _buildSection(context, "My Approvals", 5),
-                  _buildSection(context, "My Organizations", 5, onPlus: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => CreateOrganizationScreen()));
-                  }),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/organizationList');
+                    },
+                    child: _buildSection(context, "My Organizations", 5, onPlus: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => CreateOrganizationScreen()));
+                    }),
+                  ),
                   _buildSection(context, "My Teams", 5, onPlus: () {
                     Navigator.push(context, MaterialPageRoute(builder: (_) => CreateTeamScreen()));
                   }),
