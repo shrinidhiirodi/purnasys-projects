@@ -1,7 +1,7 @@
 name: e_purna
 description: >
   e-Purna — Register people, list products/services, and grow your business.
-  Flutter project aligned with Figma design.
+  
 
 publish_to: "none" # This is a private project; don't publish to pub.dev
 
@@ -18,10 +18,17 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app/icon_epurna.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/icons/app/icon_epurna.png"
 
 flutter:
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../utils/responsive_helper.dart';
+import '../common/widgets/base_screen.dart';
 import 'create_organization_screen.dart';
 import 'create_team_screen.dart';
 import 'create_product_screen.dart';
@@ -11,36 +13,20 @@ class MyAccountDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double maxContentWidth = 600;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Container(
-              width: constraints.maxWidth > maxContentWidth
-                  ? maxContentWidth
-                  : constraints.maxWidth,
+    return BaseScreen(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth > maxContentWidth
+              ? maxContentWidth
+              : constraints.maxWidth;
+
+          return Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: width),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Top bar
-                  Container(
-                    color: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                          onPressed: () => Navigator.pop(context),
-                         ),
-                        Image.asset('assets/icons/homepage/icon_epurna_logo.png', height: 40),
-                        Image.asset('assets/icons/homepage/icon_help.png', width: 28),
-                      ],
-                    ),
-                  ),
-
-                  // User Card
+                  // ✅ User Card
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     padding: const EdgeInsets.all(16),
@@ -50,12 +36,16 @@ class MyAccountDetailsScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        CircleAvatar(radius: 40, backgroundColor: Colors.white, child: Icon(Icons.person, size: 40)),
+                        const CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.person, size: 40),
+                        ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text("Iam Admin", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
                               Text("9964132347", style: TextStyle(color: Colors.white)),
                               Text("sirodi@gmail.com", style: TextStyle(color: Colors.white)),
@@ -68,50 +58,34 @@ class MyAccountDetailsScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const PersonalDetailsScreen(),
-                              ),
+                              MaterialPageRoute(builder: (_) => const PersonalDetailsScreen()),
                             );
                           },
                           child: Image.asset(
                             'assets/icons/homepage/icon_forward_arrow.png',
                             width: 24,
                             height: 24,
-                            color: Colors.white, // remove if your PNG is colored as needed
+                            color: Colors.white,
                           ),
                         ),
-
-
                       ],
                     ),
                   ),
 
-                  // Sections
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/myOrdersList');
-                  },
-                  child: _buildSection(context, "My Orders", 5),
-                 ),
-                  _buildSection(context, "My Approvals", 5),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/organizationList');
-                    },
-                    child: _buildSection(context, "My Organizations", 5, onPlus: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => CreateOrganizationScreen()));
-                    }),
-                  ),
-                  _buildSection(context, "My Teams", 5, onPlus: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => CreateTeamScreen()));
-                  }),
-                  _buildSection(context, "My Products", 5, onPlus: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => CreateProductScreen()));
-                  }),
+                  // ✅ Sections
+                  _buildTapSection(context, "My Orders", '/myOrdersList'),
+                  _buildTapSection(context, "My Approvals", '/myApprovalList'),
+                  _buildTapSection(context, "My Organizations", '/organizationList',
+                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateOrganizationScreen()))),
+                  _buildTapSection(context, "My Teams", '/teamsList',
+                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateTeamScreen()))),
+                  _buildTapSection(context, "My Products", '/products',
+                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateProductScreen()))),
                   _buildSection(context, "My Services", 0),
 
-                  const Spacer(),
+                  const SizedBox(height: 32),
 
+                  // Sign out
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -120,15 +94,22 @@ class MyAccountDetailsScreen extends StatelessWidget {
                   )
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 
+  Widget _buildTapSection(BuildContext context, String title, String route, {VoidCallback? onPlus}) {
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, route),
+      child: _buildSection(context, title, 5, onPlus: onPlus),
+    );
+  }
+
   Widget _buildSection(BuildContext context, String title, int count, {VoidCallback? onPlus}) {
-    bool hasPlus = onPlus != null;
+    final hasPlus = onPlus != null;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -142,10 +123,11 @@ class MyAccountDetailsScreen extends StatelessWidget {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (count > 0) Text("$count", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            if (count > 0)
+              Text("$count", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             if (hasPlus)
               IconButton(
-                icon: Icon(Icons.add_circle_outline, color: Colors.grey),
+                icon: const Icon(Icons.add_circle_outline, color: Colors.grey),
                 onPressed: onPlus,
               ),
           ],

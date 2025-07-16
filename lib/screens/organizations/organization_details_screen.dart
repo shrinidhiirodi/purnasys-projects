@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../utils/responsive_helper.dart';
+import '../common/widgets/base_screen.dart';
 
 class OrganizationDetailsScreen extends StatelessWidget {
   const OrganizationDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LayoutBuilder(
+    return BaseScreen(
+      child: LayoutBuilder(
         builder: (context, constraints) {
           final maxWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
-          return SafeArea(
+          return SingleChildScrollView(
             child: Center(
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxWidth),
@@ -20,27 +21,6 @@ class OrganizationDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Top Bar
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          Image.asset(
-                            'assets/icons/homepage/icon_epurna_logo.png',
-                            height: 40,
-                          ),
-                          Image.asset(
-                            'assets/icons/homepage/icon_help.png',
-                            width: 28,
-                          ),
-                        ],
-                      ),
-
                       const SizedBox(height: 20),
 
                       const Text(

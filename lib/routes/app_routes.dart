@@ -12,6 +12,7 @@ import '../screens/orders/my_orders_list_screen.dart';
 import '../screens/product/product_feedback_screen.dart';
 import '../screens/organizations/organization_list_screen.dart';
 import '../screens/organizations/organization_details_screen.dart';
+import '../screens/teams/team_list_screen.dart';
 
 class AppRoutes {
   static final routes = <String, WidgetBuilder>{
@@ -29,6 +30,7 @@ class AppRoutes {
     '/orderDetails': (context) => const OrderDetailsScreen(),
     '/organizationList': (context) => const OrganizationListScreen(),
     '/organizationDetails': (context) => const OrganizationDetailsScreen(),
+    '/teamsList': (context) => const TeamListScreen(),
 
   };
 }
