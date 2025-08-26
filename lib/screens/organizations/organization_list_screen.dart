@@ -12,47 +12,48 @@ class OrganizationListScreen extends StatelessWidget {
         builder: (context, constraints) {
           final maxWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
-          return Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: maxWidth),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 16),
+          return SingleChildScrollView(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 16),
 
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'Organization',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  // Search Field
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Organization',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
                         ),
                       ),
                     ),
-                  ),
 
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 12),
 
-                  // Organization List
-                  Expanded(
-                    child: ListView.builder(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // ⚠️ Use shrinkWrap:true and never scrollable ListView inside scroll view
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       itemCount: 6,
                       itemBuilder: (context, index) {
@@ -70,28 +71,28 @@ class OrganizationListScreen extends StatelessWidget {
                         );
                       },
                     ),
-                  ),
 
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                  // Sign Out
-                  const Center(
-                    child: Text(
-                      'SIGN OUT',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                        letterSpacing: 1.2,
+                    const Center(
+                      child: Text(
+                        'SIGN OUT',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black54,
+                          letterSpacing: 1.2,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                ],
+                    const SizedBox(height: 16),
+                  ],
+                ),
               ),
             ),
           );
         },
       ),
     );
+
   }
 }

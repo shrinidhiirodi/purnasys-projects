@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../utils/responsive_helper.dart';
 import '../common/widgets/base_screen.dart';
 import 'create_organization_screen.dart';
-import 'create_team_screen.dart';
-import 'create_product_screen.dart';
+import '../teams/create_team_screen.dart';
+import '../product/create_product_screen.dart';
 import 'personal_details_screen.dart';
 
 class MyAccountDetailsScreen extends StatelessWidget {
@@ -21,78 +21,73 @@ class MyAccountDetailsScreen extends StatelessWidget {
               : constraints.maxWidth;
 
           return Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: width),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ✅ User Card
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade700,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 40,
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.person, size: 40),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Iam Admin", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
-                              Text("9964132347", style: TextStyle(color: Colors.white)),
-                              Text("sirodi@gmail.com", style: TextStyle(color: Colors.white)),
-                              Text("GST: 29AA123456I", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                              Text("PAN: AAJPI8765E", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => const PersonalDetailsScreen()),
-                            );
-                          },
-                          child: Image.asset(
-                            'assets/icons/homepage/icon_forward_arrow.png',
-                            width: 24,
-                            height: 24,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: width),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 16),
 
-                  // ✅ Sections
-                  _buildTapSection(context, "My Orders", '/myOrdersList'),
-                  _buildTapSection(context, "My Approvals", '/myApprovalList'),
-                  _buildTapSection(context, "My Organizations", '/organizationList',
-                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateOrganizationScreen()))),
-                  _buildTapSection(context, "My Teams", '/teamsList',
-                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateTeamScreen()))),
-                  _buildTapSection(context, "My Products", '/products',
-                      onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateProductScreen()))),
-                  _buildSection(context, "My Services", 0),
-
-                  const SizedBox(height: 32),
-
-                  // Sign out
-                  Center(
-                    child: Padding(
+                    // ✅ User Card
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                       padding: const EdgeInsets.all(16),
-                      child: Text("SIGN OUT", style: TextStyle(color: Colors.black)),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade700,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.person, size: 40),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text("Iam Admin", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+                                Text("9964132347", style: TextStyle(color: Colors.white)),
+                                Text("sirodi@gmail.com", style: TextStyle(color: Colors.white)),
+                                Text("GST: 29AA123456I", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text("PAN: AAJPI8765E", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => const PersonalDetailsScreen()),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/icons/homepage/icon_forward_arrow.png',
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                ],
+
+                    // ✅ Sections
+                    _buildTapSection(context, "My Orders", '/myOrdersList'),
+                    _buildTapSection(context, "My Approvals", '/my-approvals'),
+                    _buildTapSection(context, "My Organizations", '/organizationList',
+                        onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateOrganizationScreen()))),
+                    _buildTapSection(context, "My Teams", '/teamsList',
+                        onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateTeamScreen()))),
+                    _buildTapSection(context, "My Products", '/products',
+                        onPlus: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateProductScreen()))),
+                    _buildSection(context, "My Services", 0),
+
+                  ],
+                ),
               ),
             ),
           );
@@ -127,7 +122,7 @@ class MyAccountDetailsScreen extends StatelessWidget {
               Text("$count", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             if (hasPlus)
               IconButton(
-                icon: const Icon(Icons.add_circle_outline, color: Colors.grey),
+                icon: const Icon(Icons.add_circle_outline, color: Colors.white),
                 onPressed: onPlus,
               ),
           ],

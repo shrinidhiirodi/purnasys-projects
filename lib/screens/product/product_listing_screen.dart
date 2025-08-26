@@ -122,7 +122,7 @@ class ProductListingScreen extends StatelessWidget {
                                   const SizedBox(width: 8),
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/cart-details');
+                                      Navigator.pushNamed(context, '/order-review');
                                     },
                                     child: const Text('Add to cart'),
                                   ),

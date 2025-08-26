@@ -13,6 +13,11 @@ import '../screens/product/product_feedback_screen.dart';
 import '../screens/organizations/organization_list_screen.dart';
 import '../screens/organizations/organization_details_screen.dart';
 import '../screens/teams/team_list_screen.dart';
+import '../screens/cart/address_create_screen.dart';
+import '../screens/cart/address_update_screen.dart';
+import '../screens/orders/order_review_screen.dart';
+import '../screens/orders/order_confirmation_screen.dart';
+import '../screens/auth/my_approvals_list_screen.dart';
 
 class AppRoutes {
   static final routes = <String, WidgetBuilder>{
@@ -22,15 +27,18 @@ class AppRoutes {
     '/login': (context) => const LoginScreen(),
     '/products': (context) => const ProductListingScreen(),
     '/product-details': (context) => const ProductDetailsScreen(),
-    '/cart-details': (context) => const CartDetailsScreen(),
     '/address-list': (context) => const AddressListScreen(),
     '/order-details': (context) => const OrderDetailsScreen(),
     '/productFeedback': (context) => const ProductFeedbackScreen(),
     '/myOrdersList': (context) => const MyOrdersListScreen(),
-    '/orderDetails': (context) => const OrderDetailsScreen(),
     '/organizationList': (context) => const OrganizationListScreen(),
     '/organizationDetails': (context) => const OrganizationDetailsScreen(),
     '/teamsList': (context) => const TeamListScreen(),
+    '/address-update': (_) => const AddressUpdateScreen(),
+    '/address-create': (_) => const AddressCreateScreen(),
+    '/order-review': (context) => const OrderReviewScreen(),
+    '/order-confirmation': (context) => const OrderConfirmationScreen(),
+    '/my-approvals': (_) => const MyApprovalsListScreen(),
 
   };
 }

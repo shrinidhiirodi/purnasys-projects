@@ -13,7 +13,8 @@ class OrganizationDetailsScreen extends StatelessWidget {
           final maxWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
           return SingleChildScrollView(
-            child: Center(
+            child: Align(
+              alignment: Alignment.topCenter,
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxWidth),
                 child: Padding(
@@ -57,23 +58,15 @@ class OrganizationDetailsScreen extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            // TODO: Save changes
+                          },
                           child: const Text('SAVE'),
                         ),
                       ),
 
                       const SizedBox(height: 20),
 
-                      const Center(
-                        child: Text(
-                          'SIGN OUT',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black54,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -93,6 +86,7 @@ class OrganizationDetailsScreen extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
         ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       ),
     );
   }

@@ -15,60 +15,79 @@ class _AddressListScreenState extends State<AddressListScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
+      showBackButton: true,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final double maxWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
-          return SingleChildScrollView(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxWidth),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 20),
+          return Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: maxWidth),
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
 
-                      const Text(
-                        'Select a delivery address',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 20),
+                  // Main Scrollable Area
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Select a delivery address',
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 20),
 
-                      addressCard(
-                        index: 0,
-                        address:
-                        '4th floor, Church Road, Madhavarao Circle,\nBasavanagudi, Bengaluru, Karnataka 560004',
-                      ),
-                      const SizedBox(height: 20),
+                          addressCard(
+                            index: 0,
+                            address:
+                            '4th floor, Church Road, Madhavarao Circle,\nBasavanagudi, Bengaluru, Karnataka 560004',
+                          ),
+                          const SizedBox(height: 20),
 
-                      addressCard(
-                        index: 1,
-                        address:
-                        '4th floor, Church Road, Madhavarao Circle,\nBasavanagudi, Bengaluru, Karnataka 560004',
+                          addressCard(
+                            index: 1,
+                            address:
+                            '4th floor, Church Road, Madhavarao Circle,\nBasavanagudi, Bengaluru, Karnataka 560004',
+                          ),
+                          const SizedBox(height: 20),
+                        ],
                       ),
-                      const SizedBox(height: 20),
-
-                      InkWell(
-                        onTap: () {
-                          // TODO: Navigate to Add New Address
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'ADD A NEW ADDRESS',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Icon(Icons.arrow_forward_ios, size: 16),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                    ),
                   ),
-                ),
+
+                  // Sticky Footer
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 4,
+                          offset: Offset(0, -2),
+                        )
+                      ],
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/address-create');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'ADD A NEW ADDRESS',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Icon(Icons.arrow_forward_ios, size: 16),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );
@@ -112,7 +131,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
 
           ElevatedButton(
             onPressed: () {
-              // TODO: Delivery logic
+              Navigator.pushNamed(context, '/order-review');
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
@@ -127,7 +146,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
 
           OutlinedButton(
             onPressed: () {
-              // TODO: Edit address logic
+              Navigator.pushNamed(context, '/address-update');
             },
             style: OutlinedButton.styleFrom(
               shape: RoundedRectangleBorder(

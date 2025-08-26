@@ -6,21 +6,25 @@ import 'widgets/enquiry_section.dart';
 import 'widgets/footer_section.dart';
 import '../common/widgets/base_screen.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+
     return BaseScreen(
       showBackButton: false,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final double maxContentWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
+          final double maxContentWidth =
+          ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
           return SingleChildScrollView(
             child: Column(
               children: [
-                // ✅ Hero Section (white background)
+                // ✅ Hero Section with toggle
                 Center(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxContentWidth),
@@ -54,7 +58,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 20),
+
                       ],
                     ),
                   ),

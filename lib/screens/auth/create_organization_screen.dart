@@ -10,50 +10,17 @@ class CreateOrganizationScreen extends StatelessWidget {
     return BaseScreen(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final double maxContentWidth = ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
+          final double maxContentWidth =
+          ResponsiveHelper.getResponsiveMaxWidth(constraints.maxWidth);
 
           return Center(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxContentWidth),
               child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 32), // extra space to avoid cutoff
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
-
-                    // Profile Card
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade800,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white,
-                            child: Icon(Icons.person, size: 30),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text('Iam Admin', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                                Text('9964132347', style: TextStyle(color: Colors.white)),
-                                Text('sirodi@gmail.com', style: TextStyle(color: Colors.white)),
-                                Text('GST: 29AA123456I', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                                Text('PAN: AAJPI8765E', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Image.asset('assets/icons/homepage/icon_forward_arrow.png', width: 24, color: Colors.white),
-                        ],
-                      ),
-                    ),
-
                     const SizedBox(height: 16),
 
                     // Form Card
@@ -85,14 +52,23 @@ class CreateOrganizationScreen extends StatelessWidget {
                             'State',
                           ].map(_buildTextField).toList(),
                           const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                          // Responsive Buttons
+                          Wrap(
+                            spacing: 16,
+                            runSpacing: 12,
+                            alignment: WrapAlignment.center,
                             children: [
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.black,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 32,
+                                    vertical: 12,
+                                  ),
                                 ),
                                 onPressed: () => Navigator.pop(context),
                                 child: const Text("CANCEL"),
@@ -100,10 +76,17 @@ class CreateOrganizationScreen extends StatelessWidget {
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 32,
+                                    vertical: 12,
+                                  ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  // Handle create action
+                                },
                                 child: const Text("CREATE"),
                               ),
                             ],
@@ -111,12 +94,6 @@ class CreateOrganizationScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    const SizedBox(height: 16),
-                    const Center(
-                      child: Text("SIGN OUT", style: TextStyle(color: Colors.black)),
-                    ),
-                    const SizedBox(height: 24),
                   ],
                 ),
               ),
@@ -135,7 +112,8 @@ class CreateOrganizationScreen extends StatelessWidget {
           hintText: label,
           filled: true,
           fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          contentPadding:
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: BorderSide.none,

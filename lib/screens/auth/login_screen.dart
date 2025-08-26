@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../utils/responsive_helper.dart';
 import '../common/widgets/base_screen.dart';
 import 'my_account_details_screen.dart';
+import 'common/login_state.dart'; // ✅ Import LoginState
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -63,8 +64,14 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
+
+                      /// ✅ Login button logic
                       ElevatedButton(
                         onPressed: () {
+                          // Set login flag
+                          LoginState.isLoggedIn.value = true;
+
+                          // Navigate to MyAccount screen
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (_) => const MyAccountDetailsScreen()),
@@ -79,7 +86,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         child: const Text('LOGIN'),
                       ),
+
                       const SizedBox(height: 12),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
